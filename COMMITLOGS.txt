@@ -1,3 +1,11 @@
+Implementing filename management. [001]
+
+- Added new function `reconstruct_filenames`.
+- `reconstruct_filenames` now pulls media files' full path.
+- Refactored code.
+
+
+
 Implemented root directory input method.
 
 - Implemented manual input for grabbing the root directory.

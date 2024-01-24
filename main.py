@@ -6,6 +6,9 @@
 - Implement naming system.
     - Rename files based on their date and time meta data.
     - Store the original file names using the csv data structure.
+- Store the original and the reconstructed filenames in csv format.
+    - Use only 1 csv data bank.
+    - Back up csv data bank.
 - Implement cap system i.e. for accidental sort on whole disk.
 """
 
@@ -41,9 +44,40 @@ def main():
                   ' not a valid directory. Press Enter to exit.')
             input(); exit()
 
+    # Manage file names.
+    reconstruct_filenames(root_dir)
+
+
+def reconstruct_filenames(root_dir):
+    """Return reconstructed filenames."""
+    cme = [  # Common Media Extensions
+        ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".sv",
+        ".mp4", ".avi", ".mkv", ".flv", ".webm", ".h264", ".h265",
+        ".flac", ".wav", ".aiff", ".mp3", ".aac", ".ogg"
+    ]
+
+    # Pull media filepaths.
+    media_file_paths = []
+    original_filenames = []
+    tree_path = os.walk(root_dir)
+    for dir, _, files in tree_path:
+        for file in files:
+            for ext in cme:
+                if file.endswith(ext):
+                    filepath = os.path.join(dir, file)
+                    media_file_paths.append(filepath)
+                    original_filenames.append(file)
+                    break
+
+    # Read files metadata.
+    # Construct filename based on date and time.
+    # Store original and constructed filename in csv format.
+    # Write csv file.
+    # Return reconstructed filenames.
+
 
 def configuration():
-    """Manage and read the script's configuration."""
+    """Construct and/or return script's configuration."""
     if not os.path.exists(CONFIG_DIR):
 
         # Construct and write the config file.
