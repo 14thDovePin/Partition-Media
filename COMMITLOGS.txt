@@ -1,0 +1,11 @@
+Template's Initial Commit
+
+- Added the following files:
+  + .gitignore
+  + COMMITLOGS.txt
+  + LICENSE
+  + main.py
+  + README.md
+- License used is the MIT License.
+- Added a basic code block within `main.py`.
+- Added contents to `README.md`.
