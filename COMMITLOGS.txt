@@ -1,3 +1,10 @@
+Refactored and improved script configuration.
+
+- Renamed function `create_config` to `configuration`.
+- Refactored code.
+
+
+
 Implemented configuration file.
 
 - Added function `create_config`.
