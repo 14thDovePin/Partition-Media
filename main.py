@@ -1,6 +1,8 @@
 """TODO LIST
 - Implement configuration file.
     - Implement `config.ini` check system.
+    - Add option for most recent content modification
+    option instead of creation.
 - Implement file and folder management.
 - Implement sorting algorithm.
 - Implement naming system.
@@ -16,12 +18,14 @@
 import os
 
 from configparser import ConfigParser
+from datetime import datetime
 from sys import exit
 
 
 CONFIG = ConfigParser()
 CONFIG_FN = "config.ini"
 CONFIG_DIR = os.path.join(os.getcwd(), CONFIG_FN)
+MEDIA_FILEPATHS = {}
 
 
 def main():
@@ -57,19 +61,38 @@ def reconstruct_filenames(root_dir):
     ]
 
     # Pull media filepaths.
-    media_file_paths = []
-    original_filenames = []
     tree_path = os.walk(root_dir)
     for dir, _, files in tree_path:
         for file in files:
             for ext in cme:
                 if file.endswith(ext):
-                    filepath = os.path.join(dir, file)
-                    media_file_paths.append(filepath)
-                    original_filenames.append(file)
-                    break
+                    MEDIA_FILEPATHS[file] = {
+                        'original_name': file,
+                        'path': dir,
+                        'full_path': os.path.join(dir, file)
+                    }; break
 
-    # Read files metadata.
+    # Read date & time from files meta data.
+    for file in MEDIA_FILEPATHS:
+        fp = MEDIA_FILEPATHS[file]['full_path']
+        # Most recent content modification.
+        raws = os.stat(fp).st_mtime
+        rtime = datetime.fromtimestamp(raws)
+        MEDIA_FILEPATHS[file]['date_created'] = {
+            'Month': rtime.strftime("%m"),
+            'Day': rtime.strftime("%d"),
+            'Year': rtime.strftime("%y"),
+            'Week': rtime.strftime("%a"),
+            'Hour': rtime.strftime("%H"),
+            'Minute': rtime.strftime("%M"),
+            'Second': rtime.strftime("%S"),
+            'Raw(Seconds)': raws,
+            'Full': rtime.strftime("%m/%d/%y %a %H:%M:%S")
+        }
+
+    # ri = list(MEDIA_FILEPATHS.keys())[-1]
+    # print(MEDIA_FILEPATHS[ri])
+
     # Construct filename based on date and time.
     # Store original and constructed filename in csv format.
     # Write csv file.

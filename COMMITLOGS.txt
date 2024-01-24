@@ -1,3 +1,13 @@
+Implementing filename management. [002]
+
+`reconstruct_filenames` Changes
+- Modified data structure for containing
+  information about file paths.
+- Added feature to read & construct the data
+  for date and time creation of files.
+
+
+
 Implementing filename management. [001]
 
 - Added new function `reconstruct_filenames`.
