@@ -1,3 +1,9 @@
+Added a TODO list in `main.py`.
+
+- Modified `main.py`.
+
+
+
 Started project Partition Media
 
 - Renamed the project to `Partition Media`.
