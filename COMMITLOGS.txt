@@ -1,3 +1,11 @@
+Implemented root directory input method.
+
+- Implemented manual input for grabbing the root directory.
+- Hooked `manual_input_mode` for root directory.
+- Hooked `default_sorting_directory` for root directory.
+
+
+
 Refactored and improved script configuration.
 
 - Renamed function `create_config` to `configuration`.

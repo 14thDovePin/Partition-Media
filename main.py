@@ -6,12 +6,14 @@
 - Implement naming system.
     - Rename files based on their date and time meta data.
     - Store the original file names using the csv data structure.
+- Implement cap system i.e. for accidental sort on whole disk.
 """
 
 
 import os
 
 from configparser import ConfigParser
+from sys import exit
 
 
 CONFIG = ConfigParser()
@@ -22,11 +24,26 @@ CONFIG_DIR = os.path.join(os.getcwd(), CONFIG_FN)
 def main():
     """The main function of the script."""
     # Configure script.
-    configuration()
+    config = configuration()
+
+    # Grab root directory to modify.
+    if config.getboolean('manual_input_mode'):
+        print('Input root directory to partition.')
+        while True:
+            root_dir = input('RootDirectory-> ')
+            if not os.path.exists(root_dir):
+                print('InvalidDirectory!')
+            else: break
+    else:
+        root_dir = config.get('default_sorting_directory')
+        if not os.path.exists(root_dir):
+            print('ConfigurationError! "default_sorting_directory" is'
+                  ' not a valid directory. Press Enter to exit.')
+            input(); exit()
 
 
 def configuration():
-    """Manage the script's configuration."""
+    """Manage and read the script's configuration."""
     if not os.path.exists(CONFIG_DIR):
 
         # Construct and write the config file.
@@ -43,7 +60,7 @@ def configuration():
 
     # Read config file.
     CONFIG.read(CONFIG_DIR)
-    config = CONFIG['CONFIGURATION']
+    return CONFIG['CONFIGURATION']
 
 
 if __name__ == '__main__':
