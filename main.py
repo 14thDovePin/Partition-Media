@@ -1,8 +1,5 @@
 """TODO LIST
 - Implement configuration file.
-    - Add option for manual input of root directory to sort.
-    - Option for maximum number of files per group.
-    - Option for segregating file types.
 - Implement file and folder management.
 - Implement sorting algorithm.
 - Implement naming system.
@@ -11,8 +8,37 @@
 """
 
 
+import os
+
+from configparser import ConfigParser
+
+
+CONFIG = ConfigParser()
+CONFIG_FN = "config.ini"
+CONFIG_DIR = os.path.join(os.getcwd(), CONFIG_FN)
+
+
 def main():
-    pass
+    """The main function of the script."""
+    if not os.path.exists(CONFIG_DIR):
+        create_config()
+        print("Configuration File Created!")
+
+
+def create_config():
+    """Create the configuration file."""
+    # Construct configuration.
+    CONFIG['CONFIGURATION'] = {
+        'manual_input_mode': 'true',
+        'default_sorting_directory': 'None',
+        'max_file_count_per_group': '20',
+        'segregate_file_types': 'false',
+        'use_date_for_grouping': 'false',
+        }
+
+    # Write configuration.
+    with open(CONFIG_DIR, 'w') as f:
+        CONFIG.write(f)
 
 
 if __name__ == '__main__':

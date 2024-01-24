@@ -1,3 +1,11 @@
+Implemented configuration file.
+
+- Added function `create_config`.
+- Updated `COMMITLOGS.txt`.
+- Implemented configuration construction.
+
+
+
 Added a TODO list in `main.py`.
 
 - Modified `main.py`.
