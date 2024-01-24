@@ -1,3 +1,10 @@
+Started project Partition Media
+
+- Renamed the project to `Partition Media`.
+- Modified `README.md`.
+
+
+
 Template's Initial Commit
 
 - Added the following files:
