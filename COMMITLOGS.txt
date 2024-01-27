@@ -1,3 +1,11 @@
+Added function to construct file names out of the metadata.
+
+- Added new function `construct_filenames`.
+- Reconstructed filenames according to metadata pulled.
+- Refactored code.
+
+
+
 Refactored code.
 
 - Added new file `partition_media.py`.

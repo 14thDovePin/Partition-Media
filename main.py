@@ -8,6 +8,8 @@
 - Implement naming system.
     - Rename files based on their date and time meta data.
     - Store the original file names using the csv data structure.
+    - Added overflow in filenames for files
+      that were created in the same second.
 - Store the original and the reconstructed filenames in csv format.
     - Use only 1 csv data bank.
     - Back up csv data bank.
