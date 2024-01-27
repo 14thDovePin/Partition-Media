@@ -1,3 +1,9 @@
+Implemented unit testing.
+
+- Added a test for the configuration file & its contents.
+
+
+
 Added function to construct file names out of the metadata.
 
 - Added new function `construct_filenames`.
