@@ -1,3 +1,12 @@
+Refactored code.
+
+- Added new file `partition_media.py`.
+- Added new function `partition_media`.
+- Renamed function `reconstruct_filenames` to `get_file_data`.
+- Refactored code.
+
+
+
 Implementing filename management. [002]
 
 `reconstruct_filenames` Changes
